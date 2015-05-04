@@ -21,7 +21,6 @@
             if (isJs) {
                 node = document.createElement('script');
                 node.type = 'text/javascript';
-                node.async = true;
                 node.src = url;
             } else {
                 node = document.createElement("link");
