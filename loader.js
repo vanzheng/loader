@@ -32,6 +32,13 @@
 
             document.getElementsByTagName("head")[0].appendChild(node);
 
+            function onload() {
+                // Ensure only run once and handle memory leak in IE
+                node.onload = node.onerror = node.onreadystatechange = null;
+
+                callback();
+            }
+
             var supportOnload = "onload" in node;
 
             if (supportOnload) {
@@ -42,13 +49,6 @@
                         onload()
                     }
                 }
-            }
-
-            function onload() {
-                // Ensure only run once and handle memory leak in IE
-                node.onload = node.onerror = node.onreadystatechange = null
-
-                callback()
             }
         }
     }
